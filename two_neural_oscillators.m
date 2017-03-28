@@ -1,6 +1,6 @@
 function two_neural_oscillators
 % Two coupled neural oscillators made of leaky-integrator neurons
-
+close all
 global tau;
 global D;
 global b;
@@ -11,7 +11,7 @@ global omega_mech;
 % Parameters of the neural network
 % MODIFY THE PARAMETER VALUES
 
-tau   = [0.05, 0.05, 0.05, 0.05]';  % CHANGE THIS TO CHANGE THE INTRINSIC FREQUENCIES
+tau   = [0.04, 0.04, 0.08, 0.08]';  % CHANGE THIS TO CHANGE THE INTRINSIC FREQUENCIES
 D     = 1;
 
 b     = [-2.75, -1.75, -2.75, -1.75]';     % Values for a limit cycle
@@ -21,13 +21,13 @@ w(3:4,3:4)     = [4.5, -1; 1, 4.5]';  % Second oscillator
 
 % Coupling between the two neural oscillators:
 % ADD COUPLING WEIGHTS HERE BETWEEN NEURONS 1 AND 3 (OR OTHER NEURONS OF YOUR CHOICE).
-w(1,3) = 0.0;
-w(3,1) = 0.0;
+w(1,3) = 0.2;
+w(3,1) = 0.2;
 
 % Forcing term from a periodic mechanical input
 % SET VALUES FOR THE PERIODIC FORCING TERM, see question 7.b
-a_sens = 0.0;
-omega_mech = 2*pi*2.0;
+a_sens = 0.1;
+omega_mech = 2*pi*0.8;
 
 % Initial conditions
 %  SET THE INITIAL CONDITIONS

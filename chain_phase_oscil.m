@@ -1,16 +1,16 @@
-function chain_pdimhase_oscil(a,e,Noscils)
+function chain_phase_oscil(a,e,Noscils)
  % a is the coupling strength. e is the difference of intrinsic frequencies
  % from one oscillator to the next (typically negative, to get a head to
  % tail traveling wave). Noscils is the number of oscillators.
- 
+ close all
 if nargin<1
     a = 10; % Coupling strength. FEEL FREE TO CHANGE
 end
 if nargin<2
-    e=-0.1;  % Difference of intrinsic frequencies from one oscillator to the next. FEEL FREE TO CHANGE
+    e=pi/12;  % Difference of intrinsic frequencies from one oscillator to the next. FEEL FREE TO CHANGE
 end
 if nargin<3
-    Noscils=20;  % Number of oscillators. FEEL FREE TO CHANGE
+    Noscils=2;  % Number of oscillators. FEEL FREE TO CHANGE
 end
 close all
 
@@ -20,9 +20,9 @@ disp(sprintf('\n Noscils: %d,   Difference of freq: e=%.2f  Coupling strength a=
 % Oscillator 1 is the head. Oscillator Noscils is the tail
 omega = 2*pi*ones(Noscils, 1);
 for i=2:Noscils
-    %omega(i)=omega(i-1)+e;
+    omega(i)=omega(i-1)+e;
     %omega(i)=omega(1)+exp((i-1/Noscils)^5)*e*Noscils;
-    omega(i)=omega(i-1)*0.96;
+    %omega(i)=omega(i-1)*0.96;
 end
 dif_omega = diff(omega);
 
@@ -46,18 +46,17 @@ synchronization_achieved = a>=abs(e)*Noscils*Noscils/8;
 if synchronization_achieved
     disp(sprintf('Synchronization achieved:\n'));
     % COMPUTE THE FIXED POINTS FOR THE PHASE DIFFERENCES:
-    fixed_points = asin(S);
+    fixed_points = asin(S)
         
     figure(1)
-    hold on
-    set(gca,'FontSize',20)
-    
     plot(fixed_points,'o-','LineWidth',2)
+    set(gca,'FontSize',20)
     set(gca,'YDir','Reverse')
     aa=axis;
     axis([0 Noscils aa(3) 0])
     xlabel('Oscillator')
     ylabel('Stable phase difference')
+    hold off
     print -dpng chain_phase_oscil_phases.png
 end
 
@@ -79,8 +78,8 @@ for t=0:dt:t_end
         % apply a mechanical input to the tail segment
     % UPDATE HERE THE TERM TO APPLY A PERIODIC FORCING TERM, CF QUESTION
     % 6.C
-    a_sens = 0;
-    omega_mech = 2*pi*0.9;
+    a_sens = 10;
+    omega_mech = 2*pi*2;
     
     % Evolution of the different oscillators
     % COMPUTE THE DERIVATIVES OF THETA FOR THE DIFFERENT OSCILLATORS    
@@ -120,11 +119,11 @@ ylabel('Oscillations')
 subplot(212)
 hold on
 set(gca,'FontSize',20)
-plot(T,diff(THETA')','LineWidth',2)
+plot(T,mod(diff(THETA')',2*pi),'LineWidth',2)
 if abs(S)<=1.0
     plot(T(end),fixed_points,'o')
 end
-axis([0 t_end -pi pi])
+axis([0 t_end 0 2*pi])
 xlabel('Time')
 ylabel('Phase differences')
 print -dpng chain_phase_oscil.png
@@ -141,7 +140,7 @@ else
     legend('Intrinsic', 'Resulting','Mechanical','location','best')
 end
 
-axis([1 Noscils 0 max(omega)+1])
+axis([1 Noscils 0 max(omega)+10])
 xlabel('Oscillator')
 ylabel('Frequencies')
 print -dpng chain_phase_oscil_freq.png
