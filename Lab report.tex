@@ -28,22 +28,30 @@
 \section{Introduction}
 The aim of this laboratory is to model central pattern generators to simulate a primitive behaviour of a lamprey neural system. By varying the parameters, we are going to experiment different simulations to help us understand the weight of each parameter and how to modify the behaviour of our lamprey model.
 
-\section{CPG model}
-\subsection{Default parameters}
+\section{Modelling the lamprey CPG with phase oscillators}
+\subsection{Default parameters (6a.)}
 
-blabla
+We implemented a different chains of oscillators and varied the number of oscillators, the gradient of frequencies between them as well the coupling strength. To start of, we chose 10 oscillators, a frequency gradient of $\pi /6$ and a coupling strength of 7 to get an example of a phase locked chain of oscillators (see \cite{6astable}). From the plots, one can observe that the phase differences between the oscillators all stabilize to constant values and the oscillators visibly synchronize (left plot). Furthermore, despite of the intrinsic frequency gradient, the oscillators all agree on a common frequency during the simulation (right plot).
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{fig/default1.png}\includegraphics[width=0.5\textwidth]{fig/default2.png}
+	\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil-6a_stable.png}\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil_freq-6a_stable.png}
+	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 7. Left: Oscillations and Phase differences of the oscillators over time.  Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
 \end{figure}
-\begin{SCfigure}
-	\centering
-	\caption{ ... caption text ...}
-	\includegraphics[width=0.5\textwidth]%
-	{fig/default3}% picture filename
-\end{SCfigure}
 
+Next, we used our analytical formula to modify one parameter at a time to lose the phase locking behaviour of the chain of oscillators. First, the coupling strength was modified and reduced to 4 (see \cite{6aunstablecoupling}), and as predicted by our analytical prediction, the phase locking was lost. Interestingly, the chain of oscillators seems to have converged on two distinct frequencies, with the upper half of the chain synchronizing on a higher frequency as the lower part of the chain, with the central oscillators (especially the green one) experiencing quite some perturbation by being localized at the interface between these two subsystems.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil-6a_unstable.png}\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil_freq-6a_unstable.png}
+	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 4. Left: Oscillations and Phase differences of the oscillators over time. Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
+\end{figure}
+
+Similar loss of phase locking was also observed, if our initial phase locked oscillator chain was modified to either raise the frequency gradient to $\pi /5$ or to raise the number of oscillators to 11. This isn't very surprising, because by looking at the phase locking inequality condition using the parameters of our synchronized oscillator chain, one can predict that already a small change of one parameter in the wrong direction would change the sign of the inequality.
+
+\begin{equation}
+	coupling \_ strength = 7 > 6.545 =\frac{\pi \cdot 10^{2}}{6 \cdot 8} = \frac{frequency \_ gradient \cdot Noscils^2}{8}
+\end{equation}
 
 \subsection{Influence of the number of oscillators}
 
