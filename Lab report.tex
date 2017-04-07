@@ -80,15 +80,25 @@ blabla
 \section{Comparing neuronal oscillators with phase oscillators}
 \subsection{General behaviour (7.a)}
 
-We saw  on the previous section that a phase oscillators with a good coupling has a smouth behaviour. A practical example could be 2 pendulums with an independant source of excitation coupled with a spring. If they have two intrinsic different frequency at the begining, there will be a transitory phase until they converge to the same freqency with some phase depending on the coupling strengh. The two signals in time look like sinusoidal curves. In opposition, for neuronal oscillators, it is possible to reach different modes of stable oscillations even with some crazy curves, see figure X.
+We saw  on the previous section that a phase oscillators with a good coupling has a smouth behaviour, it is also the case for a neuronal oscillator. A practical example could be 2 pendulums with an independant source of excitation coupled with a spring. If they have two intrinsic different frequency at the begining, there will be a transitory phase until they converge to the same freqency with some phase depending on the coupling strengh. The two signals in time look like sinusoidal curves. See figure(xXx).
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{fig/2phase.png}\includegraphics[width=0.5\textwidth]{fig/crazy.png}
+	\includegraphics[width=0.5\textwidth]{fig/2phase.png}\includegraphics[width=0.5\textwidth]{fig/neuron1}
 	\caption{On the left picture, a stable phase oscillator and some crazy stable neuronal oscillations using a strong negative coupling on the right picture.}
 \end{figure}
 
 \newpage
+
+In opposition a phase oscillator, it is possible for a neuronal oscillator to reach different modes of stable oscillations even with some highly non linear curves using a high negative coupling strengh, see figure X.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig/crazy.png}
+	\caption{A stable neuronal oscillations using a strong negative coupling.}
+\end{figure}
+
+
 When playing with the coupling strengh, one can observe two different behaviours. For the phase oscillators, a high coupling strengh results in the two masses oscillating at the same phase and frequency. If we add a strong positive coupling strengh to two neuronal oscillators, for example neuron 1 and 3, one can observe that the neurons will no longer oscillate but saturate to the maximum value because they excite one the other, see figure XX. The neurons 2 and 4 will be killed because of the negative feedback from neurons 1 and 2.
 
 \begin{figure}[!h]
@@ -97,9 +107,11 @@ When playing with the coupling strengh, one can observe two different behaviours
 	\caption{Neurons with a high coupling strengh resulting in no oscillations.}
 \end{figure}
 
+\newpage
+
 \subsection{Comparing forced oscillators (7.b)}
 
-If the periodic input is in the same range of frequency as the neuron 1, one can distinguish two extrem cases. Firstly, if the coupling strengh is low, the neuron 3 will lightly feel the influence of the input periodic signal, see fig (??)
+If the periodic input is in the same range of frequency as the neuron 1, one can distinguish two extrem cases. Firstly, if the coupling strengh is low, the neuron 3 will lightly feel the influence of the input periodic signal, see fig (??).
 
 \begin{figure}[!h]
 	\centering
@@ -107,21 +119,22 @@ If the periodic input is in the same range of frequency as the neuron 1, one can
 	\caption{Neuronal oscillators with a low coupling strengh and a periodic input on neuron 1.}
 \end{figure}
 
-\newpage
-
-Secondly, one can observe that even if the neurons are overconstrained and then saturate, there will be a residual oscillations, see fig (!??). This is interesting to see because we can imagine that the environement dictate the coupling strengh and our neuronal system would oscillate in different modes depending one the coupling strengh between the neurons.
+Secondly, one can observe that even if the neurons are overconstrained and then saturate, there will be a residual oscillations, see fig (!??). This is interesting because we can imagine that the environement dictate the coupling strengh and our neuronal system could oscillate in different modes depending one the coupling strengh.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/sat.png}
-	\caption{A high coupling strengh on a neuronal oscillator excited by a periodic signal on the neuron 1.}
+	\caption{A high positive coupling strengh on a neuronal oscillator excited by a periodic signal on the neuron 1.}
 \end{figure}
 
-In the case where the frequency of the input signal is way higher than the instrinsic frequency, ...
-
 \newpage
-\section{Conclusion}
 
-blabla
+In the case where the frequency of the input signal is way higher than the instrinsic frequency, the transmition of the excitation for a both type of oscillators is low if the coupling strengh isn't too high. If the constrain is too high, the neuronal oscillator saturate as seen in the previous figure and the phase oscillator will have some chaotic behaviour. One can see on figure (??) that they have same kind of behaviour if one simulate the systems with parameters of the same order.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig/dd.png}\includegraphics[width=0.5\textwidth]{fig/chao.png}
+	\caption{On the left picture, a low constrain neuronal oscillator that doesnt saturate. On the right a chain phase oscillator with a corresponding coupling strengh. In both case, a periodic input with a frequency 4 time higher than their intrinsic frequency is applied on one side.}
+\end{figure}
+	
 \end{document}
