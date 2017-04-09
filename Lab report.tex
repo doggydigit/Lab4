@@ -159,11 +159,17 @@ In this part an external load with frequency $\omega_{mech}$ is applied to the t
 \frac{d}{dt}\psi_N &= \omega_N + a \sin(\psi_{N-1}-\psi_N) + a_{sens} \sin(\omega_{mech}.t-\psi_N) \\
 \frac{d}{dt}\mathbf{\phi} &= \mathbf{\Omega} + A \mathbf{S} - a_{sens} \sin(\omega_{mech}.t-\psi_N)\ [0, \ldots, 0,\, 1]'
 \end{align*}
+
+\vspace{0.5cm}
+
 And therefore in phase locking regime:
 \begin{align*}
 \frac{d}{dt}\mathbf{\phi} &= 0\\
 \mathbf{S} &= A^{-1}(a_{sens}\sin(\omega_{mech}.t-\psi_N)\ [0, \ldots, 0,\, 1]'-\mathbf{\Omega})
 \end{align*}
+
+\vspace{0.5cm}
+
 The condition for phase locking is that for every element $s_i$ of $\mathbf{S}$: $|s_i|\leq1$.
 Therefore setting the coupling strength to 10 and the frequency drift to -0.1\,rad/step, and as $-1\leq\sin(x)\leq1 \forall x \in \mathbf{R}$, we can calculate a value for the sensor coupling strength such that the condition for phase locking is verified.
 
@@ -172,9 +178,9 @@ We studied the effect of the sensor coupling strength and mechanical excitation 
 From figure \ref{4c} one can observe that the effect of sensor coupling affects more strongly the last oscillator and that its resulting frequency converges towards the frequency of mechanical excitation. The frequency of the first oscillator also increases for high sensor coupling strengths.
 
 From the figure \ref{4a} we can see that there is a range of excitation's frequencies ($0.8\times2\pi-0.95\times2\pi$\,rad/s) for which the last oscillator converges to $\omega_{mech}$ and the frequency of the first oscillator increases steadily. This range is close from the resulting frequency of the oscillator without mechanical excitation which is around $0.85\times2$. For higher excitations frequencies the frequency drops possibly because the intrinsic and excitation oscillations compensates each other. Neither the last nor the first oscillator frequencies converges toward $\omega_{mech}$ at higher mechanical excitation frequencies.
-\newpage
+It seems that this sensory input can thus modulate the oscillations of the last oscillators of the chain. One can therefore hope to use this property to better tune the phase differences between the oscillators in order to get the linear phase gradient observed in nature and already proved to be reproducible (see figure \ref{4a}). By thus implementing a sensory input with low intrinsic frequency and a coupling strength dependent on the phase difference between the last oscillator and its neighbour, it becomes possible to show that a well tuned sensory input can help the oscillator dynamics to become closer to the dynamics naturally observed in the lamprey (see figure \ref{fig:sensoryphase}). Indeed, with this sensory input the phase gradient becomes more linear than the phase gradient from the simulation without sensory input (the parameters used for the simulations were: 20 oscillators, intrinsic frequency gradient of -0.06\,rad/step and a coupling strength of 10).
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
@@ -202,6 +208,13 @@ From the figure \ref{4a} we can see that there is a range of excitation's freque
 	\caption{Resulting frequencies of the oscillator 1 and 20 as well as mechanic excitation(\ref{4a}-\ref{4c}). In figure \ref{4a} the coupling strength was kept constant at 8 while the frequency of the mechanic excitation was varied. In figure \ref{4c} the mechanic excitation's frequency was kept constant while the coupling strength was varied. Figures \ref{4b} and \ref{4d} represent the normalized standard deviation of the phase difference between oscillators as a function of time to check for phase locking. All the simulations were done for models with coupling strength of 10, frequency drift of -0.1\,rad/step and 20 oscillators.}
 \end{figure}
 
+\begin{figure}[b]
+	\centering
+	\includegraphics[width= 0.5\textwidth]{fig/figure7c_phasediff-sensory.png}
+	\caption{Stable phase differences of the oscillators with or without a sensory input modelled by a smart input to the last oscillator with an intrinsic frequency and a coupling strength.}
+	\label{fig:sensoryphase}
+\end{figure}
+
 \FloatBarrier
 
 \section{Comparing neuronal oscillators with phase oscillators}
@@ -222,7 +235,6 @@ In opposition a phase oscillator, it is possible for a neuronal oscillator to re
 	\includegraphics[width=0.5\textwidth]{fig/crazy.png}
 	\caption{A stable neuronal oscillations using a strong negative coupling.}\label{crazy}
 \end{figure}
-
 
 When playing with the coupling strengh, one can observe two different behaviours. For the phase oscillators, a high coupling strengh results in the two masses oscillating at the same phase and frequency. If we add a strong positive coupling strengh to two neuronal oscillators, for example neuron 1 and 3, one can observe that the neurons will no longer oscillate but saturate to the maximum value because they excite one the other, see figure \ref{kill}. The neurons 2 and 4 will be killed because of the negative feedback from neurons 1 and 2.
 
