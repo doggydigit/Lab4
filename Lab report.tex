@@ -6,7 +6,7 @@
 \usepackage[T1]{fontenc}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[a4paper,top=2cm,bottom=3cm,left=3cm,right=2cm,marginparwidth=1.75cm]{geometry}
 
 %% Useful packages
 \usepackage{amsmath}
@@ -18,6 +18,7 @@
 \usepackage{siunitx}
 \usepackage{sidecap}
 \usepackage{float}
+\usepackage[format=plain]{caption}
 \DeclareSIUnit\atmosphere{atm}
 
 \title{Computational Motor Control - Lab 4}
@@ -26,76 +27,64 @@
 \begin{document}
 \maketitle
 
-\section{Introduction}
-The aim of this laboratory is to model central pattern generators to simulate a primitive behaviour of a lamprey neural system. By varying the parameters, we are going to experiment different simulations to help us understand the weight of each parameter and how to modify the behaviour of our lamprey model.
-
 \section{Modelling the lamprey CPG with phase oscillators}
-\subsection{Default parameters (6a.)}
+\subsection{Parameter values for the model (6a.)}
 
-We implemented a different chains of oscillators and varied the number of oscillators, the gradient of frequencies between them as well the coupling strength. To start of, we chose 10 oscillators, a frequency gradient of $\pi /6$ and a coupling strength of 7 to get an example of a phase locked chain of oscillators (see \cite{6astable}). From the plots, one can observe that the phase differences between the oscillators all stabilize to constant values and the oscillators visibly synchronize (left plot). Furthermore, despite of the intrinsic frequency gradient, the oscillators all agree on a common frequency during the simulation (right plot).
+We studied how lamprey CPGs could be modeled with a chain of phase oscillators and first started to explore this model by implementing and simulating different kinds chains of phase oscillators with various parameters. The parameters varied were the number of oscillators, the gradient of frequencies between them and the coupling strength between oscillators. To start off, we chose 10 oscillators, a frequency gradient of $\pi /6$ and a coupling strength of 7 to get an example of a phase-locked chain of oscillators (see Figure \ref{fig:f6a-standard}). From the plots, one can observe that the phase differences between the oscillators all stabilize to constant values and the oscillators visibly synchronize (left plot) by all adopting the same frequency despite of the intrinsic frequency gradient(right plot).
 
-\begin{figure}[!h]
+\begin{figure}[!b]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil-6a_stable.png}\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil_freq-6a_stable.png}
-	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 7. Left: Oscillations and Phase differences of the oscillators over time.  Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
+	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 7. Left: Simulated oscillations and phase differences of the oscillators over time.  Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
+	\label{fig:f6a-standard}
 \end{figure}
 
-Next, we used our analytical formula to modify one parameter at a time to lose the phase locking behaviour of the chain of oscillators. First, the coupling strength was modified and reduced to 4 (see \cite{6aunstablecoupling}), and as predicted by our analytical prediction, the phase locking was lost. Interestingly, the chain of oscillators seems to have converged on two distinct frequencies, with the upper half of the chain synchronizing on a higher frequency as the lower part of the chain, with the central oscillators (especially the green one) experiencing quite some perturbation by being localized at the interface between these two subsystems.
+Next, we used our analytical formula to sufficiently modify the value of one parameter at a time in order to lose the phase-locked behaviour of the chain of oscillators. First, the coupling strength was modified and reduced to 4 (see Figure \ref{fig:f6a-unstablecoupling}), and as predicted by our analytical model, the phase locking was lost. Interestingly, the chain of oscillators seems to have converged on two distinct frequencies, with the upper half of the chain synchronizing on a higher frequency as the lower part of the chain, with the central oscillators (especially the green one) experiencing an increased instability by being localized at the interface between these two subsystems.
 
-\begin{figure}[!h]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil-6a_unstable.png}\includegraphics[width=0.5\textwidth]{fig/chain_phase_oscil_freq-6a_unstable.png}
-	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 4. Left: Oscillations and Phase differences of the oscillators over time. Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
+	\caption{Simulation of a chain of 10 phase oscillators with frequency gradient of $\pi /6$ and coupling strength of 4. Left: Simulated oscillations and phase differences of the oscillators over time. Right: Plot of intrinsic frequencies and resulting frequencies from the simulation.}
+	\label{fig:f6a-unstablecoupling}
 \end{figure}
 
-Similar loss of phase locking was also observed, if our initial phase locked oscillator chain was modified to either raise the frequency gradient to $\pi /5$ or to raise the number of oscillators to 11. This isn't very surprising, because by looking at the phase locking inequality condition using the parameters of our synchronized oscillator chain, one can predict that already a small change of one parameter in the wrong direction would change the sign of the inequality.
+Similar loss of phase locking was also observed, if our initial phase locked oscillator chain was modified to either raise the frequency gradient to $\pi /5$ or to raise the number of oscillators to 11. This isn't very surprising, because by looking at the phase locking inequality condition using the parameters of our synchronized oscillator chain, one can predict that already a small change of one parameter in the wrong direction would change the sign of the inequality. This is because our chosen standard parameters are already very close to the threshold at which the system loses its phase locking dynamic.
 
 \begin{equation}
 	coupling \_ strength = 7 > 6.545 =\frac{\pi \cdot 10^{2}}{6 \cdot 8} = \frac{frequency \_ gradient \cdot Noscils^2}{8}
 \end{equation}
 
+In order to get a better idea about how the parameters influence the phase locking, we compared if and how phase differences between oscillators stabilized during the simulations. The standard deviation measures the spread of the variables, therefore the standard deviation of the phase differences between oscillators is constant, if they are synchronized. The standard deviation of the phase differences between oscillators was therefore plotted throughout the simulations using different values for the investigated parameters (see Figure \ref{fig:f6a-phaseSTD}). The first four figures represent such standard deviations of the phase differences between oscillators as a function of time for different values of the system parameters. The simulations were performed for models with linear frequency gradients along the spinal cord and for identical initial conditions. The left column corresponds to models with 10 oscillators and the central column corresponds to models with 20 oscillators. Along the upper row the coupling strength was varied between 1 and 5. Along the lower row the intrinsic frequency gradient was varied between -0.2\,rad/step to -0.001\,rad/step. 
 
-\newpage
+The fifth figure shows Arnold tongues representing the necessary values for coupling strength and frequency gradient for phase locking. The phase locking is verified for couples in the region above the straight lines. The limit condition for a model with 10 oscillators is represented with a dashed line and the limit condition for a model with 20 oscillators is represented with a plain line. Each couple of parameters tested is also plotted, with circles for the variation of the coupling strength (first row) and stars for the variation of the frequency drift (second row).
+
+As expected the simulations and the analytical predictions depicted by the Arnold tongues for phase locking are coherent. For the models with 10 oscillators the simulation for three of the parameter couples present phase locking while only two are phase-locked for the 20 oscillator models. The parameter couple that is phase-locked for 10 oscillators but not for 20 has a coupling strength of 2 and a frequency gradient of -0.2\,rad/step. It is plotted in orange in the four left plots and corresponds to the point in the center of the five points plotted in the Arnold tongue figure.
 
 
-\begin{minipage}{0.33\textwidth}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{results/6.a/N10_E_const.jpg}
-	\end{figure}
-\end{minipage} \hfill
-\begin{minipage}{0.33\textwidth}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{results/6.a/N20_E_const.jpg}
-	\end{figure}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{results/6.a/ArnoldTongue.jpg}
-	\end{figure}
-\end{minipage}
-\begin{minipage}{0.33\textwidth}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{results/6.a/N10_A_const.jpg}
-	\end{figure}
-\end{minipage}
-\begin{minipage}{0.33\textwidth}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{results/6.a/N20_A_const.jpg}
-	\end{figure}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-	%just to align the figures
-\end{minipage}
+\begin{figure}[!t]
+	\hspace{0.4 cm}\textbf{Chains of 10 oscillators}\hspace{0.9 cm}\textbf{Chains of 20 oscillators}
+	
+	\includegraphics[width=0.33\textwidth]{results/6.a/N10_E_const.jpg}
+	\includegraphics[width=0.33\textwidth]{results/6.a/N20_E_const.jpg}
+	
+	\includegraphics[width=0.33\textwidth]{results/6.a/N10_A_const.jpg}
+	\includegraphics[width=0.33\textwidth]{results/6.a/N20_A_const.jpg}
+	\includegraphics[width=0.33\textwidth]{results/6.a/ArnoldTongue.jpg}
+	\caption{Comparison of the standard deviations of the phase gradients between oscillators throughout 20 seconds simulations with different values for the parameters of the CPG model. The two left plots use simulations using chains of 10 oscillators and the two central plots use simulations using chains of 20 oscillators. The upper left and upper central plots use simulations with different values for the coupling strength between oscillators. The lower left and lower central plots use simulations with different values for the linear intrinsic frequency gradient between oscillators. The plot on the right depicts the Arnold tongues corresponding to the parameter subspaces for which phase locking is achieved for chains of either 10 or 20 oscillators. The parameters defining the Arnold tongues are the intrinsic frequency gradients and the coupling strengths between oscillators. Some points are also depicted in the Arnold tongue figure that correspond to the parameter values that were simulated in the four other plots.}
+	\label{fig:f6a-phaseSTD}
+\end{figure}
 
-To check for phase locking regime, we look for stable phase differences between oscillators after a certain time of simulation. The standard deviation measures the spread of the variables, therefore the standard deviation of the phase differences between oscillators is constant in phase locking regime. 
 
-The first four figures represent the standard deviation of the phase differences between oscillators as a function of time for different values of the system parameters. The simulations were performed for models with linear frequency gradient along the spinal cord and for identical initial conditions. The first column corresponds to models with 10 oscillators and the second column corresponds to models with 20 oscillators. Along the first row the coupling strength was varied between 1 and 5. Along the second row the frequency drift was varied between -0.2\,rad/step to -0.001\,rad/step. 
+\subsection{Non-linear intrinsic frequency gradient (6.b)}
 
-The fifth figure represents the conditions between coupling strength and frequency drift for phase locking. The condition is verified for couples in the region above the straight line (Arnold tongue). The limit condition for a model with 10 oscillators is represented with a dashed line and the limit condition for a model with 20 oscillators is represented with a plain line. Each couple of parameters tested is also plotted, with circles for the variation of the coupling strength (first row) and stars for the variation of the frequency drift (second row).
+Previous simulations have shown that a linear intrinsic frequency gradient leads to a quadratic phase difference between adjacent oscillators once a stable state has been reached and a sigmoid-like phase difference with respect to the first oscillator of the chain (see Figure \ref{prop}). The stable phase difference with oscillator 1 was found using the cumulative sum of the phase differences between adjacent oscillators. The phase difference between the first and last oscillators is approximatively $2\pi$ i.e. they are in phase as sinus function is $2\pi$-periodic. This correspond to a travelling wave with wavelength equal to the length of the lamprey spinal cord.
 
-As expected the simulation and the analytical prevision for phase locking are coherent, for the models with 10 oscillators the simulation for two of the parameter couples present phase locking while only one for the 20 oscillator models.
+In order to study how a different type of intrinsic frequency distribution would influence the model, a simulation was run using a polynomial function to define the intrinsic frequencies of the oscillators (see Figure \ref{stand}). This lead to a sinusoid-like stable phase difference between adjacent oscillators. The stable phase difference with oscillator 1 was found using the cumulative sum of the phase differences between adjacent oscillators. Including the first and last oscillator there are 5 locations where the phase difference with oscillator 1 is null. These points are in phase with each other. This correspond to a standing wave along the lamprey with 5 nodes and therefore 4 anti-nodes.
 
-\subsection{Frequency gradient (6.b)}
+This is an interesting result, but it is known from biology that the lamprey has constant phase difference between adjacent oscillators while swimming, leading to a linear phase difference to the first oscillator. The linear intrinsic frequency gradient produces a non constant stable phase difference between  adjacent oscillators, which can be seen in figures \ref{3d} and \ref{3e}. It was therefore attempted to reproduce that behaviour with a custom intrinsic frequency distribution (see Figure \ref{3a}). This linear gradient produced a constant phase difference between adjacent oscillators and a linear phase difference with respect to the first oscillator (see Figure \ref{3b}). The simulation that stabilized to a straight wavefront is shown in figure \ref{3e}.
+
+\vspace{1cm}
+
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
@@ -109,12 +98,12 @@ As expected the simulation and the analytical prevision for phase locking are co
 		\includegraphics[width=\textwidth]{results/6.b/propaWavePhase.jpg}
 		\caption{}
 	\end{subfigure}
-	\caption{Intrinsic and resulting frequencies for each oscillator (a). Stable phase difference between adjacent oscillator and with first oscillator (b). The simulation was performed with 20 oscillators, a coupling strength of 10 and a linear gradient of intrinsic frequencies with drift -0.092\,rad/step. The simulation parameters fulfil the phase locking condition from the previous section.}\label{prop}
+	\caption{Intrinsic and resulting frequencies for each oscillator (a). Stable phase difference between adjacent oscillator and with first oscillator (b). The simulation was performed with 20 oscillators, a coupling strength of 10 and a linear gradient of intrinsic frequencies with drift -0.092\,rad/step. These simulation parameters fulfill the phase locking condition.}\label{prop}
 \end{figure}
 
-The linear gradient yields to a quadratic stable phase difference between adjacent oscillators (\ref{prop}). The stable phase difference with oscillator 1 was found using the cumulative sum of the phase differences between adjacent oscillators. The phase difference between the first and last oscillators is approximatively $2\pi$ i.e. their are in phase as sinus function is $2\pi$-periodic. This correspond to a travelling wave with wavelength equal to the length of the lamprey spinal cord.
+\vspace{1cm}
 
-\begin{figure}[h]
+\begin{figure}[!b]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
@@ -127,12 +116,10 @@ The linear gradient yields to a quadratic stable phase difference between adjace
 		\includegraphics[width=\textwidth]{results/6.b/standWavePhase.jpg}
 		\caption{}
 	\end{subfigure}
-	\caption{Intrinsic and resulting frequencies for each oscillator (a). Stable phase difference between adjacent oscillator and with first oscillator (b). The simulation was performed with 20 oscillators, a coupling strength of 10 and a polynomial gradient of intrinsic frequencies: $\omega_i = \omega_{1} + (-1.95\ 10^{-6}\times(i-1)^7 -1.37\ 10^{-4}\times(i-1)^6) -3.56\ 10^{-6}\times(i-1)^5 +4.12\ 10^{-2}\times(i-1)^4 -1.76\ 10^{-1}\times(i-1)^3 -2.43\ 10^{-1}\times(i-1)^2 +3.16\times(i-1)-4.02$. The simulation parameters fulfil the phase locking condition (i.e. the absolute value of the components of vector S are all inferior or equal to 1).}\label{stand}
+	\caption{Intrinsic and resulting frequencies for each oscillator (a). Stable phase difference between adjacent oscillator and with first oscillator (b). The simulation was performed with 20 oscillators, a coupling strength of 10 and a polynomial gradient of intrinsic frequencies: $\omega_i = \omega_{1} + (-1.95\ 10^{-6}\times(i-1)^7 -1.37\ 10^{-4}\times(i-1)^6) -3.56\ 10^{-6}\times(i-1)^5 +4.12\ 10^{-2}\times(i-1)^4 -1.76\ 10^{-1}\times(i-1)^3 -2.43\ 10^{-1}\times(i-1)^2 +3.16\times(i-1)-4.02$. The simulation parameters fulfill the phase locking condition (i.e. the absolute value of the components of vector S are all inferior or equal to 1).}\label{stand}
 \end{figure}
 
-The polynomial gradient yields to a quasi-sinusoidal stable phase difference between adjacent oscillators (\ref{stand}). The stable phase difference with oscillator 1 was found using the cumulative sum of the phase differences between adjacent oscillators. Including the first and last oscillator there are 5 locations where the phase difference with oscillator 1 is null, these points are in phase with each other. This correspond to a standing wave along the lamprey with 5 nodes and therefore 4 anti-nodes.
-
-\begin{figure}[h]
+\begin{figure}[!b]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
@@ -165,7 +152,6 @@ The polynomial gradient yields to a quasi-sinusoidal stable phase difference bet
 	\caption{Intrinsic and resulting frequencies for each oscillator (\ref{3a}-\ref{3c}). Stable phase difference between adjacent oscillator and with first oscillator (\ref{3b}-\ref{3d}). The simulations were performed for non linear gradient (\ref{3a}-\ref{3b}) given by: $\omega_{1} = 2\pi + 3.2469 ,\omega_{20} = 2\pi - 3.2469 , \omega_{i} = 2\pi$ and for a linear gradient (\ref{3c}-\ref{3d}) with drift -0.1\,rad/step. For all the simulations the number of oscillators was 20 and the coupling strength 10 and the same initial conditions. Oscillation as a function of time (\ref{3e}) for both intrinsic frequency models.}
 \end{figure}
 
-The linear frequency gradient produces a non constant stable phase difference between  adjacent oscillators which can be seen in figure \ref{3d} and \ref{3e}. The non linear gradient described in the legend produces a constant phase difference between adjacent oscillators which can be seen in figure \ref{3b} and \ref{3e} with straight wavefront.
 
 \subsection{External load (6.c)}
 In this part an external load with frequency $\omega_{mech}$ is applied to the tail of the lamprey with a sensory coupling strength $a_{sens}$:
