@@ -1,0 +1,28 @@
+a1 = -1;
+a2 = 1;
+f1 = 1;
+f2 = 2;
+Na = 41;
+Nf = 21;
+
+a = linspace(a1,a2,N);
+f = linspace(f1,f2,N);
+
+s = zeros(Na,Nf);
+
+close all
+figure(1)
+plot([a1,a2],[0,0],[0,0],[f1,f2]);
+xlabel('coupling strength');
+ylabel('ration between intrinsic frequencies');
+hold on
+for i=1:Na
+    for j=1:Nf
+        s(i,j)=ex7bsimul(a(i),f(j));
+%          if (ex7bsimul(a(i),f(j)) == 1)
+%             plot(a(i),f(j),'o');
+%          else
+%             plot(a(i),f(j),'x');
+%          end
+    end
+end

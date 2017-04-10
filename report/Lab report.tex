@@ -81,7 +81,7 @@ Previous simulations have shown that a linear intrinsic frequency gradient leads
 
 In order to study how a different type of intrinsic frequency distribution would influence the model, a simulation was run using a polynomial function to define the intrinsic frequencies of the oscillators (see Figure \ref{stand}). This lead to a sinusoid-like stable phase difference between adjacent oscillators. The stable phase difference with oscillator 1 was found using the cumulative sum of the phase differences between adjacent oscillators. Including the first and last oscillator there are 5 locations where the phase difference with oscillator 1 is null. These points are in phase with each other. This correspond to a standing wave along the lamprey with 5 nodes and therefore 4 anti-nodes.
 
-This is an interesting result, but it is known from biology that the lamprey has constant phase difference between adjacent oscillators while swimming, leading to a linear phase difference to the first oscillator. The linear intrinsic frequency gradient produces a non constant stable phase difference between  adjacent oscillators, which can be seen in figures \ref{3d} and \ref{3e}. It was therefore attempted to reproduce that behaviour with a custom intrinsic frequency distribution (see Figure \ref{3a}). This linear gradient produced a constant phase difference between adjacent oscillators and a linear phase difference with respect to the first oscillator (see Figure \ref{3b}). The simulation that stabilized to a straight wavefront is shown in figure \ref{3e}.
+This is an interesting result, but it is known from biology that the lamprey has constant phase difference between adjacent oscillators while swimming, leading to a linear phase difference to the first oscillator. The linear intrinsic frequency gradient produces a non constant stable phase difference between  adjacent oscillators, which can be seen in figures \ref{3d} and \ref{3e}. It was therefore attempted to reproduce that behaviour with a custom intrinsic frequency distribution (see Figure \ref{3a}). This linear gradient produced a constant phase difference between adjacent oscillators and a linear phase difference with respect to the first oscillator (see Figure \ref{3b}). The simulation that stabilized to a straight wave front is shown in figure \ref{3e}.
 
 \vspace{1cm}
 
@@ -234,9 +234,9 @@ An obvious difference with the chain of phase oscillators seen in the previous s
 	\caption{Simulation of two coupled neural oscillators with different intrinsic frequencies. Neurons 1 and 2 have time constants of 0.6 and neurons 3 and 4 have time constants of 0.8. Left: symetric coupling strength of 0.1. Right: symetric coupling strength of 0.3.}\label{2phase}
 \end{figure}
 
-This epilepsy-like behaviour of some neurons hyperactivating and killing the activity of other neurons if not very desirable for our model. However, it turns out that there is a way to avoid it. By using negative coupling strengths similar results can be achieved as for positive coupling strengths if the amplitude of the coupling remains small. This means that weak negative coupling will usually not lead to synchronization, but strong coupling strengths between primary neurons will. The important difference is that even for strong coupling with amplitudes that would disrupt the oscillation behaviour for the case of positive coupling, in the case of negative coupling this doesn't happen (see figure \ref{crazy}). Indeed, the periodic behaviour of the neurons is maintained as well as the synchrony. However, the signal form looks less sinusoidal with increasing coupling strength amplitude. This dynamics might not be appropriate, if they were to be directly translated into motion, but since neurons first relay to other neurons or at least to muscle before forces and motion is generated, there is no better reason to believe that one of the wave forms should be better than the other for that purpose. In the opposite, one could conjecture that this variable dynamic might facilitate the generation of more varied patterns of motion by the spinal cord. 
+This epilepsy-like behaviour of some neurons hyper-activating and killing the activity of other neurons if not very desirable for our model. However, it turns out that there is a way to avoid it. By using negative coupling strengths similar results can be achieved as for positive coupling strengths if the amplitude of the coupling remains small. This means that weak negative coupling will usually not lead to synchronization, but strong coupling strengths between primary neurons will. The important difference is that even for strong coupling with amplitudes that would disrupt the oscillation behaviour for the case of positive coupling, in the case of negative coupling this doesn't happen (see figure \ref{crazy}). Indeed, the periodic behaviour of the neurons is maintained as well as the synchrony. However, the signal form looks less sinusoidal with increasing coupling strength amplitude. This dynamics might not be appropriate, if they were to be directly translated into motion, but since neurons first relay to other neurons or at least to muscle before forces and motion is generated, there is no better reason to believe that one of the wave forms should be better than the other for that purpose. In the opposite, one could conjecture that this variable dynamic might facilitate the generation of more varied patterns of motion by the spinal cord. 
 
-Finally, one should note the maybe too obvious fact that likewise the phase oscillators, if the coupled neural oscillators have a too big difference in intrinsic frequency, they will not be able to synchronize. Overall, this show that this neural model seems to be able to fairly well reproduce the dynamics of two coupled phase oscillators. The more precise dependence is investigated in the last section by approximating the Arnold tongue describing the stability of the system depending on the values of the intrinsic frequency difference and the coupling strength (see Figure \ref{fig:bonus}.
+Finally, one should note the maybe too obvious fact that likewise the phase oscillators, if the coupled neural oscillators have a too big difference in intrinsic frequency, they will not be able to synchronize. Overall, this show that this neural model seems to be able to fairly well reproduce the dynamics of two coupled phase oscillators. The more precise dependence is investigated in the last section by approximating the Arnold tongue describing the stability of the system depending on the values of the intrinsic frequency difference and the coupling strength (see Figure \ref{fig:bonus}).
 
 \begin{figure}[!h]
 	\centering
@@ -252,30 +252,29 @@ Finally, one should note the maybe too obvious fact that likewise the phase osci
 
 
 
-
 \newpage
 \subsection{Comparing forced oscillators (7.b)}
 
 It is known from biology that CPGs are usually not open-loop, but closed-loop controllers and are modulated by sensory input. Furthermore, upper investigations of the effect of a sensory input on the chain of phase oscillator could improve the model. This is a convincing motivation to also study how sensory inputs could be incorporated in our system of coupled neural oscillators.
-A model incorporating a sensory input acting on a primary neuron (neuron 1) was therefore simulated (see Figure \ref{fig:7b-lowfreq}). This showed that, if the coupling to neuron 1 was sufficient and the exerted frequency of the sensory input was reasonably close to the intrinsic frequency of the neural oscillator, the sensory input could force its own frequency upon the neural oscillator, which would also keep synchronized to the second neural oscillator to which it was coupled. This resulted in both neural oscillators synchronizing at the frequency of the sensory input. 
+A model incorporating a sensory input acting on a primary neuron (neuron 1) was therefore simulated (see Figure \ref{fig:7b-lowfreq}). This showed that, if the coupling to neuron 1 was sufficient and the exerted frequency of the sensory input was reasonably close to the intrinsic frequency of the neural oscillator, the sensory input could force its own frequency upon the neural oscillator, which would also keep synchronized to the second neural oscillator to which it was coupled. This resulted in both neural oscillators synchronizing at the frequency of the sensory input.
 
-If the periodic input is in the same range of frequency as the neuron 1, one can distinguish two extrem cases. Firstly, if the coupling strengh is low, the neuron 3 will lightly feel the influence of the input periodic signal, see fig \ref{7b}. 
-
-
-\begin{figure}[!h]
+\begin{figure}[!b]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/figure7b_lowfreq-simu.png}\includegraphics[width=0.5\textwidth]{fig/figure7b_lowfreq-freq.png}
 	\caption{Simulation of two coupled neuronal oscillators with time constants 0.06 and 0.08 and with symmetric coupling strengths of 0.5. Neuron 1 is also subject to a sensory input modelled as a coupled oscillator with coupling strength of 1 and frequency of $\pi$. Left: Plot of the simulated neurons in time. Right: Plot of the resulting frequencies of neurons 1 and 3.}
 	\label{fig:7b-lowfreq}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!b]
 	\centering
-	\includegraphics[width=0.5\textwidth]{fig/7b.png}
-	\caption{Neuronal oscillators with a low coupling strengh and a periodic input on the first neuron.}\label{7b}
+	\includegraphics[width=0.5\textwidth]{fig/figure7b_highfreq-simu.png}\includegraphics[width=0.5\textwidth]{fig/figure7b_highfreq-freq.png}
+	\caption{Simulation of two coupled neuronal oscillators with time constants 0.06 and 0.08 and with symmetric coupling strengths of 0.5. Neuron 1 is also subject to a sensory input modelled as a coupled oscillator with coupling strength of 1 and frequency of $1.6\pi$. Left: Plot of the simulated neurons in time. Right: Plot of the resulting frequencies of neurons 1 and 3.}
+	\label{fig:7b-highfreq}
 \end{figure}
 
-Secondly, one can observe that even if the neurons are overconstrained and then saturate, there will be a residual oscillations, see fig \ref{sat}. This is interesting because we can imagine that the environement dictate the coupling strengh and our neuronal system could oscillate in different modes depending one the coupling strengh.
+However, if the frequency of the sensory input is to different of the intrinsic frequencies of the neural oscillators, they will not be able to synchronize at this mechanical frequency. An example of such a system was simulated and is depicted in figure \ref{fig:7b-highfreq}. For this simulation, all parameters are the same as for the simulation of figure \ref{fig:7b-lowfreq} only the frequency of the mechanical input is 1.6 times higher. One can observe that although the second oscillator didn't synchronize to the mechanical frequency, the first oscillator which was directly coupled to the sensory input did. One can thus interpret that the second oscillator didn't synchronize, because the coupling strength between oscillators was to weak and the intrinsic frequency of the second oscillator was to different from the mechanical frequency to be able to align with it.
+
+One can now ask the question about what happens, if the sensory input has a very strong coupling and a very high frequency, but the neural oscillators also have a strong coupling strength. Intuitively one would believe that synchrony should be maintained as long as the coupling strength between the neural oscillators is strong enough. Such a scenario was simulated using a strong positive coupling strength (see Figure \ref{sat}). It shows that the positive coupling will again lead to an over-excitation of the primary neurons and strong repression of the secondary neurons. In this case however, an oscillation can be maintained thanks to the sensory input which is transmitted to the second oscillator through the strong coupling between the two neural oscillators. One might therefore hypothesise that a sensory input might help to jump start a CPG that went off.
 
 \begin{figure}[!h]
 	\centering
@@ -283,24 +282,24 @@ Secondly, one can observe that even if the neurons are overconstrained and then 
 	\caption{A high positive coupling strengh on a neuronal oscillator excited by a periodic signal on the neuron 1.}\label{sat}
 \end{figure}
 
-\newpage
-
-In the case where the frequency of the input signal is way higher than the instrinsic frequency, the transmition of the excitation for a both type of oscillators is low if the coupling strengh isn't too high. If the constrain is too high, the neuronal oscillator saturate as seen in the previous figure and the phase oscillator will have some chaotic behaviour. One can see on figure \ref{dd} that they have same kind of behaviour if one simulate the systems with parameters of the same order.
-
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/dd.png}\includegraphics[width=0.5\textwidth]{fig/chao.png}
 	\caption{On the left picture, a low constrain neuronal oscillator that doesnt saturate. On the right a chain phase oscillator with the same corresponding coupling strengh. In both case, a periodic input with a frequency 4 time higher than their intrinsic frequency is applied on one side.}\label{dd}
 \end{figure}
 
+Finally, one should remark that the oscillators don't always need to chose between the mechanical frequency and the intrinsic oscillation. Indeed for a well tuned system, the oscillator receiving sensory input can produce a superposition of intrinsic and mechanical oscillation. This normally happens if one of these frequencies is much higher than the other (see Figure \ref{dd}). Interestingly this is a behaviour that can also be observed for phase oscillators. Moreover, it is important to note that in both cases, the second oscillator is minimally affected by the high frequency oscillation.
+
+
+
 \subsection{Arnold tongue (bonus)}
 
-In order to find out more generally what king of combinations of values for the coupling strength and for the intrinsic frequencies of the neural oscillators 
+In order to find out more generally what combinations of values for the coupling strength and for the intrinsic frequencies of the oscillators lead to synchronization between the coupled neural oscillators, many different simulations were run using various values for parameters and tested for phase locking. For this, a definition of phase-locked oscillators was necessary. It was chosen to define to neural oscillators to in synchrony, if their resulting frequencies differed by less than a small value $\epsilon$. For our purpose, $\epsilon$ was set to 0.02, which allowed to test a range of parameter value couples for the model. The result of this round of simulations lead to a plot showing an approximation of the Arnold tongue for synchrony of two coupled neural oscillators with respect to the parameters (see Figure \ref{fig:bonus}). For this purpose the coupling strength was kept negative between 0 and -2, thus neglecting positive values of coupling since negative values had been shown to have better properties than positive ones for the coupling. The frequencies were not varied in all possible ranges; instead the time constant of one oscillator was kept constant at 0.04, while the time constant of the other oscillator was varied. However, the value plotted in figure \ref{fig:bonus} corresponds to the ratio between the time constants. Since the ratio was varied between 1 and 4, the time constant of the second oscillator was varied between 0.04 and 0.16. The resulting Arnold tongue shows that for time constant ratio close to one (meaning similar time constants for both oscillators), the system can synchronize even if the coupling strength is weak. Inversely, if the time constant ratio is big, the system only synchronizes, if the coupling strength is strong. Perhaps more surprisingly, it seems that around a time constant ratio of 3, a wall seems to be present beyond which none of the tested coupling strengths is sufficiently strong to bring the system into phase locking.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{fig/figurebonus_arnold.png}
-	\caption{On the left picture, a low constrain neuronal oscillator that doesnt saturate. On the right a chain phase oscillator with the same corresponding coupling strengh. In both case, a periodic input with a frequency 4 time higher than their intrinsic frequency is applied on one side.}
+	\caption{Experimental Arnold tongue, showing which pairs of values for coupling strength and time constant ratio of two coupled neural oscillators lead to synchrony between the oscillators. Yellow regions show parameter values that lead to synchrony and and blue regions show parameter values that didn't lead to synchrony.}
 	\label{fig:bonus}
 \end{figure}
 	
